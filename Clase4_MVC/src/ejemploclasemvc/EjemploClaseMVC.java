@@ -20,21 +20,6 @@ public class EjemploClaseMVC {
         Usuario admin = new Usuario("admin", "1234", 18); //Creando un usuario
         modelo.getUsuarios().add(admin);
         controlador.mostrarLogin();
-        
-        boolean elAuxEsBuenaOnda = false;
-
-        int valor = 10%2;
-
-        if(valor == 0) {
-
-            
-            elAuxEsBuenaOnda = true;
-            System.out.println(elAuxEsBuenaOnda);
-
-        } else {
-            elAuxEsBuenaOnda = false;
-            System.out.println(elAuxEsBuenaOnda);
-        }
     }
     
 }
