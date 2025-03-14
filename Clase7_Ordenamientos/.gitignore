@@ -1,0 +1,6 @@
+#Ignorar archivos generados por NetBeans
+/nbproject/private/
+/build/
+/dist/
+*.class
+
