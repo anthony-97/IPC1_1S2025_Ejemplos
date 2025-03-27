@@ -1,19 +1,30 @@
-package model;
+package controller;
 
-public class Ordenador implements Runnable {
-    private Modelo modelo;
+import model.Pokemon;
+import model.TipoOrdenamiento;
+
+public class OrdenadorControlador extends ControladorBase implements Runnable {
     private int velocidad;
     private TipoOrdenamiento.Ordenamiento tipo;
+    private GraficadorControlador graficador;
 
-    public Ordenador(Modelo modelo, int velocidad, TipoOrdenamiento.Ordenamiento tipo) {
-        this.modelo = modelo;
+    public OrdenadorControlador(int velocidad, TipoOrdenamiento.Ordenamiento tipo) {
         this.velocidad = velocidad;
         this.tipo = tipo;
     }
 
     @Override
     public void run() {
-        TimerThread timer = new TimerThread(this.modelo.getControlador()); //Controlar el tiempo y actualizaciones
+        //Aca se crea el controlador de la grafica
+        GraficadorControlador graficador = new GraficadorControlador();
+        graficador.setModelo(this.modelo);
+        graficador.setVista(this.vista);
+        //Se crea el hilo que controlara el tiempo
+        TimerControlador timer = new TimerControlador(graficador); //Controlar el tiempo y actualizaciones
+        //El modelo y la vista se asignaron al Ordenador en el Controlador general
+        //por lo que se obtienen y se les setean al controlador del tiempo
+        timer.setModelo(this.getModelo());
+        timer.setVista(this.getVista());
         Thread timerHilo = new Thread(timer); //Hilo paralelo que controla el tiempo y actualizaciones
         timerHilo.start(); //Hilo paralelo comienza
         switch (tipo.getIndex()) {
@@ -36,10 +47,10 @@ public class Ordenador implements Runnable {
     }
 
     private void ordenarBurbujaConVelocidad(int delay) { //Ordenamiento
-        int n = modelo.getPokemonesDesordenados().length;
+        int n = this.modelo.getPokemonesDesordenados().length;
         for (int i = 0; i < n - 1; i++) { //Obtiene la solucion en n-1 iteraciones
             for (int j = 0; j < n - i - 1; j++) { 
-                if (modelo.getPokemonesDesordenados()[j].getAtaque() > modelo.getPokemonesDesordenados()[j + 1].getAtaque()) {
+                if (this.modelo.getPokemonesDesordenados()[j].getAtaque() > this.modelo.getPokemonesDesordenados()[j + 1].getAtaque()) {
                     intercambiar(j, j + 1);
                     try {
                         Thread.sleep(delay); //Se queda dormido la cantidad de ms del delay
@@ -52,7 +63,7 @@ public class Ordenador implements Runnable {
     }
     
     public void ordenarQuickSortConVelocidad(int delay) {
-        quickSort(0, modelo.getPokemonesDesordenados().length - 1, delay);
+        quickSort(0, this.modelo.getPokemonesDesordenados().length - 1, delay);
     }
 
     private void quickSort(int inicio, int fin, int delay) {
@@ -64,11 +75,11 @@ public class Ordenador implements Runnable {
     }
 
     private int particion(int inicio, int fin, int delay) {
-        int pivote = modelo.getPokemonesDesordenados()[fin].getAtaque();
+        int pivote = this.modelo.getPokemonesDesordenados()[fin].getAtaque();
         int i = inicio - 1;
 
         for (int j = inicio; j < fin; j++) {
-            if (modelo.getPokemonesDesordenados()[j].getAtaque() <= pivote) {
+            if (this.modelo.getPokemonesDesordenados()[j].getAtaque() <= pivote) {
                 i++;
                 intercambiar(i, j);
                 try {
@@ -84,9 +95,9 @@ public class Ordenador implements Runnable {
     
     //Método auxiliar para intercambiar dos elementos en el arreglo
     private void intercambiar(int i, int j) {
-        Pokemon temp = modelo.getPokemonesDesordenados()[i];
-        modelo.getPokemonesDesordenados()[i] = modelo.getPokemonesDesordenados()[j];
-        modelo.getPokemonesDesordenados()[j] = temp;
+        Pokemon temp = this.modelo.getPokemonesDesordenados()[i];
+        this.modelo.getPokemonesDesordenados()[i] = this.modelo.getPokemonesDesordenados()[j];
+        this.modelo.getPokemonesDesordenados()[j] = temp;
     }
 
 }

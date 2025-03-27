@@ -6,6 +6,7 @@ package controller;
 
 import java.util.Arrays;
 import model.Modelo;
+import model.Pokemon;
 import model.TipoOrdenamiento;
 import view.App;
 import view.EleccionOrdenamiento;
@@ -40,8 +41,7 @@ public class Controlador {
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
     }
-    
-    
+
     public void crearVentanas() { //Metodo que crea las ventanas y les setea el controlador
         this.vista.setApp(new App());
         this.vista.getApp().setControlador(this); //Este objeto Controlador
@@ -67,21 +67,19 @@ public class Controlador {
     }
 
     public void ordenar(int velocidad, TipoOrdenamiento.Ordenamiento tipo) { //Ordenar la lista
-        this.modelo.ordenarConHilo(velocidad, tipo);
+        //Se crea el controlador de los ordenamientos
+        OrdenadorControlador ordenador = new OrdenadorControlador(velocidad, tipo);
+        ordenador.setModelo(this.modelo);
+        ordenador.setVista(this.vista);
+        Thread hiloOrdenador = new Thread(ordenador); //Hilo que ordena el array
+        hiloOrdenador.start(); //Comienza el ordenamiento
     }
     
     public void llenarOriginal() { //Llenar el panel con la lista original
-        this.vista.getApp().llenarLista(Arrays.toString(this.modelo.getPokemones()));
-    }
-    
-    //Este metodo se ira llamando en el hilo que controla el tiempo y las actualizaciones
-    public void llenarListaOrdenada() { //Llenar el panel con la lista ordenada
-        this.vista.getApp().llenarOrdenada(Arrays.toString(this.modelo.getPokemonesDesordenados()));
-    }
-    
-    //Este metodo se ira llamando en el hilo que controla el tiempo y las actualizaciones
-    public void llenarTiempo(String tiempo) {
-        this.vista.getApp().llenarLabelTiempo(tiempo);
+        GraficadorControlador graficadorOriginal = new GraficadorControlador();
+        graficadorOriginal.setModelo(this.modelo);
+        graficadorOriginal.setVista(this.vista);
+        this.vista.getApp().llenarDesordenada(graficadorOriginal.generarGraficaInicial()); //Le paso un ChartPanel
     }
     
     //Para llenar las listas desplegables de los algoritmos y la velocidad
@@ -91,6 +89,13 @@ public class Controlador {
     
     public void desordenarPokemones() { //Desordena la lista de pokemones
         this.modelo.desordenarPokemones();
+    }
+
+    public void cargarPokemones(Pokemon[] pokemones) {
+        System.out.println(Arrays.toString(pokemones));
+        this.modelo.setPokemones(pokemones);
+        this.modelo.copiarPokemones(); //Copiar la lista original a la lista que se va a ordenar
+        this.llenarOriginal(); //Crea la grafica inicial
     }
     
 }

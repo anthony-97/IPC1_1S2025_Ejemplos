@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.util.ArrayList;
 import model.TipoOrdenamiento;
 
 /**
@@ -13,7 +14,7 @@ import model.TipoOrdenamiento;
 public class EleccionOrdenamiento extends VentanaBase {
 
     /**
-     * Creates new form EleccionOrdenamiento
+     * Creates new form eleccionOrdenamiento
      */
     public EleccionOrdenamiento() {
         initComponents();
@@ -29,21 +30,26 @@ public class EleccionOrdenamiento extends VentanaBase {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        velocidadLista = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        velocidadLista = new javax.swing.JComboBox<>();
         algoritmosLista = new javax.swing.JComboBox<>();
         ordenarBoton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Eleccion Ordenamiento");
-
-        velocidadLista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1.setText("Eleccion de Ordenamiento");
 
         jLabel2.setText("Velocidad");
 
         jLabel3.setText("Algoritmo");
+
+        velocidadLista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        velocidadLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                velocidadListaActionPerformed(evt);
+            }
+        });
 
         algoritmosLista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -58,49 +64,49 @@ public class EleccionOrdenamiento extends VentanaBase {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(106, 106, 106))
             .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(velocidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jLabel1)
-                        .addGap(0, 68, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(velocidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(algoritmosLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(111, 111, 111))
+                    .addComponent(jLabel3)
+                    .addComponent(algoritmosLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
-                .addGap(191, 191, 191)
+                .addGap(152, 152, 152)
                 .addComponent(ordenarBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(velocidadLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(algoritmosLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(ordenarBoton)
-                .addGap(123, 123, 123))
+                .addGap(76, 76, 76))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void velocidadListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_velocidadListaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_velocidadListaActionPerformed
 
     private void ordenarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenarBotonActionPerformed
         // TODO add your handling code here:
@@ -125,6 +131,17 @@ public class EleccionOrdenamiento extends VentanaBase {
         }
     }//GEN-LAST:event_ordenarBotonActionPerformed
 
+    public void llenarListas() {
+        this.velocidadLista.removeAllItems(); //Limpio la lista desplegable
+        this.velocidadLista.addItem("Lenta");
+        this.velocidadLista.addItem("Normal");
+        this.velocidadLista.addItem("Rapida");
+        
+        this.algoritmosLista.removeAllItems(); //Limpio la 2 lista desplegable
+        this.algoritmosLista.addItem("Burbuja");
+        this.algoritmosLista.addItem("QuickSort");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -151,6 +168,7 @@ public class EleccionOrdenamiento extends VentanaBase {
             java.util.logging.Logger.getLogger(EleccionOrdenamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -158,17 +176,6 @@ public class EleccionOrdenamiento extends VentanaBase {
                 new EleccionOrdenamiento().setVisible(true);
             }
         });
-    }
-    
-    public void llenarListas() {
-        this.velocidadLista.removeAllItems(); //Limpio la lista desplegable
-        this.velocidadLista.addItem("Lenta");
-        this.velocidadLista.addItem("Normal");
-        this.velocidadLista.addItem("Rapida");
-        
-        this.algoritmosLista.removeAllItems(); //Limpio la 2 lista desplegable
-        this.algoritmosLista.addItem("Burbuja");
-        this.algoritmosLista.addItem("QuickSort");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

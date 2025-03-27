@@ -20,13 +20,11 @@ public class EjemploOrdenamientos {
     public static void main(String[] args) {
         // TODO code application logic here
         Modelo modelo = new Modelo();
-        modelo.generarPokemones(); //Se generan los pokemones
         Vista vista = new Vista();
         Controlador controlador = new Controlador(vista, modelo);
         vista.setControlador(controlador);
         modelo.setControlador(controlador);
         controlador.crearVentanas(); //Se crean las ventanas de la aplicacion
-        controlador.llenarOriginal(); //Se llena la lista de pokemones original
         vista.getApp().setVisible(true); //Ventana de inicio es la de la APP
     }
     
