@@ -7,6 +7,7 @@
 ## 📂 Estructura del Repositorio
 
 📁 **/Clase#_xxxx** → Ejemplos vistos en clase, en donde # corresponde al numero de la clase y xxxx es el tema del ejemplo.
+📁 **/ArchivosEntradaParaPruebas** → Archivos de entrada para probar el funcionamiento de prácticas y proyectos.
 
 ---
 
@@ -31,4 +32,4 @@ No olvides hacer pull al ver que se publicó un nuevo ejemplo (aplica si usaste 
 ## 🏆 Autor  
 
 👨‍💻 Desarrollado por **Anthony Aquino**  
-📆 Última actualización: `13 de marzo del 2025`  
+📆 Última actualización: `21 de abril del 2025`  
