@@ -1,0 +1,6 @@
+Identificador-NombreCompleto-Usuario-Contraseña-TipoCliente-Lista Automóviles
+1001-Carlos Méndez-cmendez-pass123-normal-P001XYZ,Toyota,2015,C:\imagenes\auto1.jpg;P002XYZ,Ford,2016,C:\imagenes\auto2.jpg
+1002-María Gómez-mgomez-pass456-oro-P003ABC,Hyundai,2020,C:\imagenes\auto3.jpg;P004DEF,Kia,2021,C:\imagenes\auto4.jpg;P005GHI,Mazda,2019,C:\imagenes\auto5.jpg
+1003-Luis Rodríguez-lrodriguez-normal-oro-P006JKL,Nissan,2018,C:\imagenes\auto6.jpg
+1004-Ana Morales-amorales-xyz987-normal-P007MNO,Chevrolet,2022,C:\imagenes\auto7.jpg;P008PQR,BMW,2021,C:\imagenes\auto8.jpg
+1005-Roberto Díaz-rdiaz-rdpass-normal-P009STU,Mercedes,2020,C:\imagenes\auto9.jpg;P010VWX,Volkswagen,2019,C:\imagenes\auto10.jpg;P011YZA,Audi,2023,C:\imagenes\auto11.jpg
