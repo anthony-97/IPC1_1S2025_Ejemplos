@@ -6,8 +6,8 @@
 
 ## 📂 Estructura del Repositorio
 
-📁 **/Clase#_xxxx** → Ejemplos vistos en clase, en donde # corresponde al numero de la clase y xxxx es el tema del ejemplo.
-📁 **/ArchivosEntradaParaPruebas** → Archivos de entrada para probar el funcionamiento de prácticas y proyectos.
++ 📁 **/Clase#_xxxx** → Ejemplos vistos en clase, en donde # corresponde al numero de la clase y xxxx es el tema del ejemplo.
++ 📁 **/ArchivosEntradaParaPruebas** → Archivos de entrada para probar el funcionamiento de prácticas y proyectos.
 
 ---
 
