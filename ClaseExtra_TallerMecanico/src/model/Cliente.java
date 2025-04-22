@@ -4,7 +4,7 @@
  */
 package model;
 
-import controller.FlujoControlador;
+import controller.ProcesoOrdenControlador;
 import java.util.Vector;
 import view.VerProgreso;
 
@@ -17,7 +17,7 @@ public class Cliente extends Usuario {
     private String tipoCliente; //Oro o normal
     private VerProgreso ventanaProgreso; //Cada cliente debe tener su propia ventana de barras de progreso
     private Vector<OrdenTrabajo> listaOrdenes; //Cada cliente va a tener su propia lista de ordenes de trabajo
-    private FlujoControlador flujoControlador; //Cada cliente va a tener su propio flujo de procesamiento de automoviles
+    private ProcesoOrdenControlador procesoOrdenControlador; //Cada cliente va a tener su propio flujo de procesamiento de automoviles
 
     public Cliente(String dpi, String nombre, String nombreUsuario, String contrasena, String tipoCliente) {
         this.dpi = dpi;
@@ -62,12 +62,12 @@ public class Cliente extends Usuario {
         this.listaOrdenes = listaOrdenes;
     }
 
-    public FlujoControlador getFlujoControlador() {
-        return flujoControlador;
+    public ProcesoOrdenControlador getProcesoOrdenControlador() {
+        return procesoOrdenControlador;
     }
 
-    public void setFlujoControlador(FlujoControlador flujoControlador) {
-        this.flujoControlador = flujoControlador;
+    public void setProcesoOrdenControlador(ProcesoOrdenControlador procesoOrdenControlador) {
+        this.procesoOrdenControlador = procesoOrdenControlador;
     }
     
     public void llenarListasProgreso() {

@@ -16,6 +16,7 @@ public class Controlador {
     private Vista vista;
     private Modelo modelo;
     private String usuarioActual; //El usuario que esta logueado
+    private FlujoControlador flujoControlador; //El controlador que procesa las colas, se cambió a que solo un flujo las procese
 
     public Controlador(Vista vista, Modelo modelo) {
         this.vista = vista;
@@ -226,10 +227,15 @@ public class Controlador {
     
     public void iniciarFlujo() {
         Cliente clienteActual = this.obtenerCliente(this.usuarioActual);
-        clienteActual.setFlujoControlador(new FlujoControlador(clienteActual));
-        clienteActual.getFlujoControlador().setModelo(this.modelo);
-        clienteActual.getFlujoControlador().setVista(this.vista);
-        clienteActual.getFlujoControlador().iniciarFlujo();
+        //Si no se ha creado un FlujoControlador, se crea y se le setea el modelo y la vista
+        if(this.flujoControlador == null) {
+            this.flujoControlador = new FlujoControlador();
+            this.flujoControlador.setModelo(this.modelo);
+            this.flujoControlador.setVista(this.vista);
+        }
+        //Independientemente de lo anterior, se inicia el FlujoControlador
+        this.flujoControlador.setClienteActual(clienteActual);
+        this.flujoControlador.iniciarFlujo();
     }
 
     public void llenarTablasColas() {

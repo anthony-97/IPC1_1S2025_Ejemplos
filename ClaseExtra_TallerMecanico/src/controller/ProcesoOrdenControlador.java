@@ -14,8 +14,9 @@ import model.OrdenTrabajo;
  * @author polares
  */
 public class ProcesoOrdenControlador extends ControladorBase {
-    public boolean terminado = false;    
     
+    public boolean terminado = false;
+            
     //Verifica el espacio de las colas y asigna inicialmente las ordenes de trabajo a donde corresponde
     public void verificarEspacio(Cliente clienteActual) {
         Vector<OrdenTrabajo> ordenes = clienteActual.obtenerOrdenesSinAsignar();
@@ -57,6 +58,8 @@ public class ProcesoOrdenControlador extends ControladorBase {
         new Thread(() -> {
             while (!this.terminado) {
                 this.actualizarTablasColas(); //Actualiza las tablas de las colas al admin
+                //Se le van actualizando los carros listos al cliente
+                this.clienteActual.getVentanaProgreso().llenarCarrosListos(this.clienteActual);
                 dormir(3000);  //Esperamos 3 segundos antes de actualizar el estado
             }
         }).start();
